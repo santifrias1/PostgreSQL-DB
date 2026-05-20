@@ -31,7 +31,7 @@ CREATE TABLE atleta (
 	nivel_experiencia VARCHAR(20) NULL,
 	id_categoria INTEGER NULL,
 	CONSTRAINT atleta_pk PRIMARY KEY (id_atleta),
-	CONSTRAINT id_categoria FOREIGN KEY (id_categoria) REFERENCES public.categoria(id_categoria)
+	CONSTRAINT id_categoria FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
 CREATE TABLE sesion (
@@ -41,15 +41,15 @@ CREATE TABLE sesion (
 	nivel_fatiga VARCHAR(20) NULL,
 	id_atleta INTEGER NULL,
 	CONSTRAINT sesion_pk PRIMARY KEY (id_sesion),
-	CONSTRAINT id_atleta FOREIGN KEY (id_atleta) REFERENCES public.atleta(id_atleta) ON DELETE CASCADE
+	CONSTRAINT id_atleta FOREIGN KEY (id_atleta) REFERENCES atleta(id_atleta) ON DELETE CASCADE
 );
 
 CREATE TABLE atleta_carrera (
 	tiempo TIME NULL,
 	id_atleta INTEGER NULL,
 	id_carrera INTEGER NULL,
-	CONSTRAINT id_atleta FOREIGN KEY (id_atleta) REFERENCES public.atleta(id_atleta) ON DELETE CASCADE,
-	CONSTRAINT id_carrera FOREIGN KEY (id_carrera) REFERENCES public.carrera(id_carrera) ON DELETE CASCADE
+	CONSTRAINT id_atleta FOREIGN KEY (id_atleta) REFERENCES atleta(id_atleta) ON DELETE CASCADE,
+	CONSTRAINT id_carrera FOREIGN KEY (id_carrera) REFERENCES carrera(id_carrera) ON DELETE CASCADE
 );
 
 CREATE TABLE detalle_sesion (
@@ -58,6 +58,6 @@ CREATE TABLE detalle_sesion (
 	tiempo TIME NULL,
 	id_sesion INTEGER NULL,
 	id_ejercicio INTEGER NULL,
-	CONSTRAINT id_ejercicio FOREIGN KEY (id_ejercicio) REFERENCES public.catalogo_ejercicios(id_ejercicio),
-	CONSTRAINT id_sesion FOREIGN KEY (id_sesion) REFERENCES public.sesion(id_sesion) ON DELETE CASCADE
+	CONSTRAINT id_ejercicio FOREIGN KEY (id_ejercicio) REFERENCES catalogo_ejercicios(id_ejercicio),
+	CONSTRAINT id_sesion FOREIGN KEY (id_sesion) REFERENCES sesion(id_sesion) ON DELETE CASCADE
 );
